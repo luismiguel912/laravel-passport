@@ -39,15 +39,18 @@ class LoginController extends Controller
     ** Funcion que realiza el rejistro de un nuevo usuario
     */
     public function register(Request $request){
+        // $validator, Se encarga de validar nuestros variables del request
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);
+        // Condicion, Que valida los errores
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
+        // Si pasa la validacion se realiza el registro
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
