@@ -20,7 +20,11 @@ class UserController extends Controller
 
     public function getUser($user_id){
         $user = User::find($user_id);
-        // return response()->json(['status'=>true, 'data' => $user],  $this->successStatus);
+        /*
+        * *UserResource
+        ** Se hace uso de api Resource para responder nuestras respuestas de nuestro API Route::GET('/{user_id}','UserController@getUser');
+        ** Le mandamos una coleccion de tipo User, Y manipulamos la informacion de lado de UserResource
+        */
         return response()->json(['status'=>true, 'data' => new UserResource($user)],  $this->successStatus);
     }
 }

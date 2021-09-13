@@ -14,12 +14,13 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        /*
+        ** Accedemos a las propiedades del modelo directamente con la variable $this->propiedad
+        */
         return [
             'id_user' => $this->id,
             'nombre_usuario' => $this->name,
             'correo_electronico' => $this->email,
-            // 'created_at' => $this->created_at,
-            // 'updated_at' => $this->updated_at,
         ];
     }
 }
